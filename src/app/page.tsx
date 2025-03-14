@@ -5,7 +5,6 @@ import { socket } from "./socket";
 import { notifications } from "@mantine/notifications";
 import { IconCircleDotFilled } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -13,7 +12,6 @@ export default function Home() {
   const [users, setUsers] = useState<{ name: string, items: number[] }[]>([])
   const [con, setCon] = useState(false)
   const [attack, setAttack] = useState<{ username: string, action: string }[]>([])
-  const router = useRouter();
   const noti = (attackBy: string) => {
     if (attackBy !== username) {
       notifications.show({
@@ -55,7 +53,10 @@ export default function Home() {
 
 
   useEffect(() => {
-    const newUserHandle = (newUser: any) => {
+    const newUserHandle = (newUser: {
+      name: string;
+      items: number[];
+    }[]) => {
       setUsers(newUser);
     }
 
@@ -80,14 +81,17 @@ export default function Home() {
     socket.on("win", winHandle);
 
 
-    const userWalk = (user: any) => {
+    const userWalk = (user: {
+      name: string;
+      items: number[];
+    }[]) => {
 
       if (user?.find((s) => s.items.length === 0)) {
         modals.open({
           title: 'เราได้ผู้ชนะแล้ว !!!',
           children: (
             <>
-              <Text c={'black'}>{user?.find((s) => s.items.length !== 0).name} is winner!!</Text>
+              <Text c={'black'}>{user!.find((s) => s.items.length !== 0)!.name} is winner!!</Text>
               <Button c={'black'} fullWidth onClick={() => {
                 setUsers([]);  // Reset users
                 setAttack([]); // Reset attacks
