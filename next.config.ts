@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  experimental: {
+    // Remove appDir (it is no longer needed)
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
