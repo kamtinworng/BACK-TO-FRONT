@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 
 const theme = createTheme({
-  scale: 0.5
+  scale: 1
 });
 
 export default function RootLayout({

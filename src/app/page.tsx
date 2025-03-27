@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Box, Button, Flex, List, Paper, SimpleGrid, Stack, TextInput, Text } from "@mantine/core";
 import { socket } from "./socket";
 import { notifications } from "@mantine/notifications";
-import { IconCircleDotFilled } from "@tabler/icons-react";
+import { IconBox, IconCircleDotFilled, IconCut, IconFileFilled } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 
 export default function Home() {
@@ -212,14 +212,15 @@ export default function Home() {
                         : 'white' : 'white'
                 }
               >
-                {
-                  index == user?.items[0] ?
-                    <IconCircleDotFilled />
-                    : index == users.find((f) => f.name !== username)?.items[0] ?
+                <Flex justify={'center'} align={'center'}>
+                  {
+                    index == user?.items[0] ?
                       <IconCircleDotFilled />
-                      : ''
-                }
-                {index}
+                      : index == users.find((f) => f.name !== username)?.items[0] ?
+                        <IconCircleDotFilled />
+                        : <p>&nbsp;</p>
+                  }
+                </Flex>
               </Paper>
             );
           })}
@@ -230,13 +231,13 @@ export default function Home() {
 
       </Box >
       <Flex justify={'center'} gap={'lg'} my={'xl'}>
-        <Button variant="light" onClick={() => action('Rock')}
+        <Button fullWidth leftSection={<IconBox />} variant="light" onClick={() => action('Rock')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Rock</Button>
-        <Button variant="light" onClick={() => action('Paper')}
+        <Button fullWidth leftSection={<IconFileFilled />} variant="light" onClick={() => action('Paper')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Paper</Button>
-        <Button variant="light" onClick={() => action('Scissors')}
+        <Button fullWidth leftSection={<IconCut />} variant="light" onClick={() => action('Scissors')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Scissors</Button>
       </Flex>
