@@ -231,13 +231,13 @@ export default function Home() {
 
       </Box >
       <Flex justify={'center'} gap={'lg'} my={'xl'}>
-        <Button fullWidth leftSection={<IconBox />} variant="light" onClick={() => action('Rock')}
+        <Button fullWidth leftSection={<IconBox size={10} />} variant="light" onClick={() => action('Rock')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Rock</Button>
-        <Button fullWidth leftSection={<IconFileFilled />} variant="light" onClick={() => action('Paper')}
+        <Button fullWidth leftSection={<IconFileFilled size={10} />} variant="light" onClick={() => action('Paper')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Paper</Button>
-        <Button fullWidth leftSection={<IconCut />} variant="light" onClick={() => action('Scissors')}
+        <Button fullWidth leftSection={<IconCut size={10} />} variant="light" onClick={() => action('Scissors')}
           disabled={attack.find((f) => f.username === username)?.action ? true : false}
         >Scissors</Button>
       </Flex>
